@@ -1,14 +1,19 @@
 (function () {
 
-  angular.module('multinivelFrontendApp', [])
-    .controller('BankCtrl', ['$scope', '$routeParams', 'bankService', function ($scope, $routeParams, pokemonService) {
+  angular.module('multinivel.BankController', [])
+    .controller('BankController', function () {
 
-      $scope.banks = [];
-      $scope.bank  = {
-         name: 'Bancomer'
+      this.banks = [];
+
+      this.bank = {
+         name : "Bancomer"
       }
 
+      this.bank2= {
+         name : "HSBC"
+      }
 
-      $scope.banks.push($scope.bank);
-    }])
+      this.banks.push(this.bank);
+      this.banks.push(this.bank2);
+    })
 })();
