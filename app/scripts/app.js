@@ -1,34 +1,18 @@
-'use strict';
+(function(){
+var app = angular.module('multinivel', []);
 
-/**
- * @ngdoc overview
- * @name multinivelFrontendApp
- * @description
- * # multinivelFrontendApp
- *
- * Main module of the application.
- */
-angular
-  .module('multinivelFrontendApp', [
-    'ngAnimate',
-    'ngCookies',
-    'ngMessages',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch'
-  ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+app.controller('BankController', function() {
+   this.banks = [];
+
+   this.bank = {
+      name : "Bancomer"
+   }
+
+   this.bank2= {
+      name : "HSBC"
+   }
+
+   this.banks.push(this.bank);
+   this.banks.push(this.bank2);
+});
+})();
