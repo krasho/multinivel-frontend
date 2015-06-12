@@ -1,0 +1,18 @@
+<!-- Banks !!!!!!!-->
+<div ng-controller="BankController as BankCtrl">
+   <h2>Banks</h2>
+   <table class="table table-striped table-bordered">
+      <thead>
+         <tr>
+            <th>Name</th>
+            <th>Actions</th>
+         </tr>
+      </thead>
+      <tbody ng-repeat="bank in BankCtrl.banks">
+         <tr>
+            <td>{{bank.name}}</td>
+            <td>Edit</td>
+         </tr>
+      </tbody>
+   </table>
+</div>
