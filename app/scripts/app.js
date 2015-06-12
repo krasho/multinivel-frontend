@@ -1,7 +1,8 @@
 (function(){
 var app = angular.module('multinivel', [
    'ngRoute',
-   'multinivel.BankController'
+   'multinivel.BankController',
+   'multinivel.BankService'
    ]);
 
    app.config(['$routeProvider', function ($routeProvider) {
@@ -10,8 +11,17 @@ var app = angular.module('multinivel', [
         .when('/', {
             templateUrl: 'views/banks/index.html',
             controller : 'BankController',
-            controllerAs: 'BankCtrl'
         })
+        .when('/banks', {
+            templateUrl: 'views/banks/index.html',
+            controller : 'BankController',
+        })
+
+        .otherwise({
+            redirectTo: '/'
+        })
+
+
    }])
 
 })();

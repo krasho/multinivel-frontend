@@ -1,5 +1,5 @@
 <!-- Banks !!!!!!!-->
-<div ng-controller="BankController as BankCtrl">
+<div>
    <h2>Banks</h2>
    <table class="table table-striped table-bordered">
       <thead>
@@ -8,7 +8,7 @@
             <th>Actions</th>
          </tr>
       </thead>
-      <tbody ng-repeat="bank in BankCtrl.banks">
+      <tbody ng-repeat="bank in banks">
          <tr>
             <td>{{bank.name}}</td>
             <td>Edit</td>
