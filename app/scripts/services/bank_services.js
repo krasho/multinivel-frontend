@@ -14,8 +14,21 @@
             return deferred.promise;
          }
 
+         function findById(id) {
+            var deferred = $q.defer();
+            $http.get('http://api.multinivel.dev/banks/'+id)
+
+            .success(function(data) {
+               deferred.resolve(data);
+            });
+
+            return deferred.promise;
+
+         }
+
          return {
-            all : all
+            all : all,
+            findById : findById
          };
 
       }]);

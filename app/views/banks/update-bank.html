@@ -1,0 +1,27 @@
+<h1>Update Bank</h1>
+<hr>
+
+<div ng-init="findById()">
+ <form name="banksForm" class="form-horizontal" role="form" ng-submit="banksForm.$valid && updateBank()" novalidate>
+      <div class="form-group" show-errors>
+        <div class="col-sm-6">
+            <label  class="control-label" for="name">Name *</label>
+            <input type="text" class="form-control" name="name" id="name" ng-model="bank.name" required>
+
+           <div ng-show="banksForm.$submitted || banksForm.name.$touched">
+              <div ng-show="banksForm.name.$error.required">Write the name of the bank</div>
+           </div>
+
+        </div>
+      </div>
+
+      <!-- Button -->
+      <div class="control-group">
+        <div class="controls">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+         </div>
+      </div>
+
+    </form>
+  </div>
+</div>

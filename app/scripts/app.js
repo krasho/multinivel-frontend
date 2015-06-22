@@ -13,14 +13,16 @@ var app = angular.module('multinivel', [
             templateUrl: 'views/banks/index.html',
             controller : 'BankController',
         })
+
         .when('/banks', {
             templateUrl: 'views/banks/index.html',
             controller : 'BankController',
         })
 
-        .when('banks/:id/edit'){
-
-        }
+        .when('/banks/:id', {
+            templateUrl: 'views/banks/update-bank.html',
+            controller : 'BankDetailController',
+        })
 
         .otherwise({
             redirectTo: '/'
