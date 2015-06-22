@@ -1,4 +1,5 @@
 (function(){
+'use strict';
 var app = angular.module('multinivel', [
    'ngRoute',
    'multinivel.BankController',
@@ -17,11 +18,15 @@ var app = angular.module('multinivel', [
             controller : 'BankController',
         })
 
+        .when('banks/:id/edit'){
+
+        }
+
         .otherwise({
             redirectTo: '/'
-        })
+        });
 
 
-   }])
+   }]);
 
 })();
