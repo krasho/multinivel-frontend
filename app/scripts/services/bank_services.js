@@ -32,7 +32,7 @@
             var respuesta = $http({
                                    method: "put",
                                    url: 'http://api.multinivel.dev/banks/'+id,
-                                   //transformRequest: transformRequestAsFormPost,
+                                   transformRequest: transformRequestAsFormPost,
                                    data: {
                                        _method : "put",
                                        id: id,
