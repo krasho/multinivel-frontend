@@ -26,7 +26,11 @@
 
 
         $scope.updateBank = function() {
-           alert("entre a guardar");
+           var id = $routeParams.id;
+           bankService.updateBank(id, $scope.bank.name).then(function(data){
+               $location.path('/banks');
+
+           });
         }
 
     }]);
