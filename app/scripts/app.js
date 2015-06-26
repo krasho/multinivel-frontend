@@ -30,6 +30,13 @@ var app = angular.module('multinivel', [
         })
 
 
+        .when('/bank/delete/:id', {
+            templateUrl: 'views/banks/delete-bank.html',
+            controller : 'BankDetailController',
+        })
+
+
+
         .otherwise({
             redirectTo: '/'
         });

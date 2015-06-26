@@ -18,6 +18,10 @@
          $location.path('/banks/new');
       };
 
+      $scope.deleteBank = function (bankId) {
+         $location.path('/banks/delete/'+bankId);
+      };
+
 
     }])
 
@@ -44,6 +48,14 @@
 
            });
         }
+
+        $scope.deleteBank = function() {
+           bankService.deleteBank($scope.bank.id).then(function(data){
+               $location.path('/banks');
+
+           });
+        }
+
 
     }]);
 })();
