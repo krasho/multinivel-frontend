@@ -1,7 +1,7 @@
 (function(){
    'use strict';
    angular.module('multinivel.BankService',[])
-      .factory('bankService', ['$http', '$q','transformRequestAsFormPost', function($http, $q, transformRequestAsFormPost){
+      .factory('bankService', ['$http', '$q', function($http, $q){
 
          // get all banks
          function all() {
@@ -32,7 +32,6 @@
             var respuesta = $http({
                                    method: "put",
                                    url: 'http://api.multinivel.dev/banks/'+id,
-                                   transformRequest: transformRequestAsFormPost,
                                    data: {
                                        _method : "put",
                                        id: id,
@@ -50,10 +49,34 @@
 
          }
 
+         function createBank(name) {
+            var deferred = $q.defer();
+
+            var respuesta = $http({
+                                   method: "POST",
+                                   url: 'http://api.multinivel.dev/banks',
+                                   data: {
+                                       _method : "POST",
+                                       name: name,
+                                   }
+
+            });
+
+            respuesta.success(function(data) {
+               deferred.resolve(data);
+            });
+
+            return deferred.promise;
+
+
+         }
+
+
          return {
             all : all,
             findById : findById,
             updateBank : updateBank,
+            createBank : createBank,
          };
 
       }]);

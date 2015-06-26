@@ -1,8 +1,8 @@
-<h1>Update Bank Entre</h1>
+<h1>Create Bank</h1>
 <hr>
 
-<div ng-init="findById()">
- <form name="banksForm" class="form-horizontal" role="form" ng-submit="banksForm.$valid && updateBank()" novalidate>
+<div>
+ <form name="banksForm" class="form-horizontal" role="form" ng-submit="banksForm.$valid && createBank()" novalidate>
       <div class="form-group" show-errors>
         <div class="col-sm-6">
             <label  class="control-label" for="name">Name *</label>
@@ -18,7 +18,7 @@
       <!-- Button -->
       <div class="control-group">
         <div class="controls">
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="submit" class="btn btn-primary">Nuevo</button>
          </div>
       </div>
 

@@ -11,8 +11,13 @@
       }
 
       $scope.editBank = function (bankId) {
-         $location.path('/bank/' + bankId);
+         $location.path('/bank/edit/' + bankId);
       };
+
+      $scope.createBank = function () {
+         $location.path('/banks/new');
+      };
+
 
     }])
 
@@ -28,6 +33,13 @@
         $scope.updateBank = function() {
            var id = $routeParams.id;
            bankService.updateBank(id, $scope.bank.name).then(function(data){
+               $location.path('/banks');
+
+           });
+        }
+
+        $scope.createBank = function() {
+           bankService.createBank($scope.bank.name).then(function(data){
                $location.path('/banks');
 
            });

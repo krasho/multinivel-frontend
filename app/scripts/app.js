@@ -4,7 +4,6 @@ var app = angular.module('multinivel', [
    'ngRoute',
    'multinivel.BankController',
    'multinivel.BankService',
-   'multinivel.transformRequestAsFormPost'
    ]);
 
    app.config(['$routeProvider', function ($routeProvider) {
@@ -20,10 +19,16 @@ var app = angular.module('multinivel', [
             controller : 'BankController',
         })
 
-        .when('/bank/:id', {
+        .when('/banks/new', {
+            templateUrl: 'views/banks/create-bank.html',
+            controller : 'BankDetailController',
+        })
+
+        .when('/bank/edit/:id', {
             templateUrl: 'views/banks/update-bank.html',
             controller : 'BankDetailController',
         })
+
 
         .otherwise({
             redirectTo: '/'
