@@ -19,6 +19,7 @@
       };
 
       $scope.deleteBank = function (bankId) {
+         alert("entre");
          $location.path('/banks/delete/'+bankId);
       };
 

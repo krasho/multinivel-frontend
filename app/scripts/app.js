@@ -2,6 +2,7 @@
 'use strict';
 var app = angular.module('multinivel', [
    'ngRoute',
+   'devise',
    'multinivel.BankController',
    'multinivel.BankService',
    ]);
@@ -10,8 +11,8 @@ var app = angular.module('multinivel', [
 
      $routeProvider
         .when('/', {
-            templateUrl: 'views/banks/index.html',
-            controller : 'BankController',
+            templateUrl: 'views/index.html',
+            //controller : 'BankController',
         })
 
         .when('/banks', {
