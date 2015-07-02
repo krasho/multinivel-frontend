@@ -2,16 +2,19 @@
 'use strict';
 var app = angular.module('multinivel', [
    'ngRoute',
-   'devise',
+   'ng-token-auth',
+   'ngCookies',
    'multinivel.BankController',
    'multinivel.BankService',
+   'multinivel.UserSessionsController',
+   'multinivel.userSessionService',
+   'multinivel.CookieHandlerService',
    ]);
 
    app.config(['$routeProvider', function ($routeProvider) {
-
      $routeProvider
         .when('/', {
-            templateUrl: 'views/index.html',
+            //templateUrl: 'views/index.html',
             //controller : 'BankController',
         })
 
@@ -36,6 +39,10 @@ var app = angular.module('multinivel', [
             controller : 'BankDetailController',
         })
 
+        .when('/sign_in', {
+                templateUrl: 'views/user_sessions/new.html',
+                controller: 'UserSessionsController'
+        })
 
 
         .otherwise({
@@ -44,5 +51,14 @@ var app = angular.module('multinivel', [
 
 
    }]);
+
+
+  //To redirect after login
+  app.run(['$rootScope', '$location', function($rootScope, $location) {
+    $rootScope.$on('auth:login-success', function() {
+      $location.path('/');
+    });
+  }]);
+
 
 })();

@@ -19,7 +19,6 @@
       };
 
       $scope.deleteBank = function (bankId) {
-         alert("entre");
          $location.path('/banks/delete/'+bankId);
       };
 
@@ -51,7 +50,7 @@
         }
 
         $scope.deleteBank = function() {
-           bankService.deleteBank($scope.bank.id).then(function(data){
+           bankService.deleteBank($scope.bank.name).then(function(data){
                $location.path('/banks');
 
            });
