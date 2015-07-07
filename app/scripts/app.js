@@ -2,8 +2,7 @@
 'use strict';
 var app = angular.module('multinivel', [
    'ngRoute',
-   'ng-token-auth',
-   'ngCookies',
+   'satellizer',
    'multinivel.BankController',
    'multinivel.BankService',
    'multinivel.UserSessionsController',
@@ -52,13 +51,13 @@ var app = angular.module('multinivel', [
 
    }]);
 
-
-  //To redirect after login
-  app.run(['$rootScope', '$location', function($rootScope, $location) {
-    $rootScope.$on('auth:login-success', function() {
-      $location.path('/');
-    });
-  }]);
+  app.config(function($authProvider) {
+        // Parametros de configuración
+        $authProvider.loginUrl = "http://api.multinivel.dev/sessions";
+        $authProvider.signupUrl = "http://api.multinivel.dev/signup";
+        $authProvider.tokenName = "token";
+        $authProvider.tokenPrefix = "multinivel";
+  });
 
 
 })();

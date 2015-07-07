@@ -1,16 +1,26 @@
 (function () {
   'use strict';
   angular.module('multinivel.UserSessionsController', [])
-    .controller('UserSessionsController',['$scope','userSessionService', function ($scope, userSessionService) {
-
-      //If there is an error in the login
-      $scope.$on('auth:login-error', function(ev, reason) {
-         $scope.error = reason.errors[0];
-      });
-
+    .controller('UserSessionsController',['$scope', '$auth', '$location','userSessionService', function ($scope, $auth, $location, userSessionService) {
 
       $scope.handleRegBtnClick = function(authInfo) {
-          userSessionService.authentication(authInfo);
+
+          $auth.login({
+               session :{
+                  email: authInfo.email,
+                  password: authInfo.password
+               }
+           })
+           .then(function() {
+              console.log("loggeado");
+               // Si se ha registrado correctamente,
+               // Podemos redirigirle a otra parte
+               //$location.path("/private");
+           })
+           .catch(function(response) {
+               console.log("error en el loggeado");
+               // Si ha habido errores, llegaremos a esta función
+           });
       }
 
     }])
