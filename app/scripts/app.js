@@ -88,6 +88,27 @@ var app = angular.module('multinivel', [
         $authProvider.tokenPrefix = "multinivel";
   });
 
+
+   app.config(['$httpProvider', 'satellizer.config', function($httpProvider, config) {
+      $httpProvider.interceptors.push(['$q', function($q) {
+        var tokenName = config.tokenPrefix ? config.tokenPrefix + '_' + config.tokenName : config.tokenName;
+        return {
+          request: function(httpConfig) {
+            var token = localStorage.getItem(tokenName);
+            if (token && config.httpInterceptor) {
+              token = config.authHeader === 'Authorization' ?  token : token;
+
+              httpConfig.headers[config.authHeader] = token;
+            }
+            return httpConfig;
+          },
+          responseError: function(response) {
+            return $q.reject(response);
+          }
+        };
+      }]);
+  }]);
+
    app.run(
       // Funnción para mandar a la página de loggeo si no hay sessión
      function($rootScope, $location, AuthenticationService){
@@ -97,6 +118,7 @@ var app = angular.module('multinivel', [
          // Verificamos si puede acceder a la siguiente ruta
          $rootScope.$on("$routeChangeStart", function(event, nextRoute, currentRoute) {
              // Verificamos que este loggeado, si no, lo mandamos a loggearse
+             console.log(nextRoute);
              if(nextRoute.$$route.access.requiredLogin && !AuthenticationService.isLogged) {
                  $location.path('/sign_in');
              }
@@ -108,5 +130,7 @@ var app = angular.module('multinivel', [
          });
      }
     );
+
+
 
 })();
