@@ -118,7 +118,6 @@ var app = angular.module('multinivel', [
          // Verificamos si puede acceder a la siguiente ruta
          $rootScope.$on("$routeChangeStart", function(event, nextRoute, currentRoute) {
              // Verificamos que este loggeado, si no, lo mandamos a loggearse
-             console.log(nextRoute);
              if(nextRoute.$$route.access.requiredLogin && !AuthenticationService.isLogged) {
                  $location.path('/sign_in');
              }

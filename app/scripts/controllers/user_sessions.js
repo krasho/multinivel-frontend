@@ -17,9 +17,8 @@
                // Podemos redirigirle a otra parte
                //$location.path("/private");
            })
-           .catch(function(response) {
-               console.log("error en el loggeado");
-               // Si ha habido errores, llegaremos a esta función
+           .catch(function(response) {  // Si ha habido errores, llegaremos a esta función
+               $scope.error = response.data.errors;
            });
       }
 
