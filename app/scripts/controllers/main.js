@@ -1,17 +1,10 @@
-'use strict';
+(function () {
+  'use strict';
+  angular.module('multinivel.MainController', [])
+    .controller('MainController',['$rootScope', function ($rootScope) {
 
-/**
- * @ngdoc function
- * @name multinivelFrontendApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the multinivelFrontendApp
- */
-angular.module('multinivelFrontendApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+      $rootScope.signOut = function() {
+         alert("Entre");
+      }
+    }]);
+})();

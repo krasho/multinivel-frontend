@@ -3,6 +3,7 @@
 var app = angular.module('multinivel', [
    'ngRoute',
    'satellizer',
+   'multinivel.MainController',
    'multinivel.BankController',
    'multinivel.BankService',
    'multinivel.UserSessionsController',
@@ -13,10 +14,9 @@ var app = angular.module('multinivel', [
    app.config(['$routeProvider', function ($routeProvider) {
      $routeProvider
         .when('/', {
-            //templateUrl: 'views/index.html',
-            //controller : 'BankController',
+            controller : 'MainController',
             access:{
-              requiredLogin: true,
+              requiredLogin: false,
               userShouldBeAdmin: false
             }
 
@@ -71,6 +71,16 @@ var app = angular.module('multinivel', [
           }
         })
 
+        .when('/private', {
+            templateUrl: 'views/private/index.html',
+            controller : 'MainController',
+            access:{
+              requiredLogin: true,
+              userShouldBeAdmin: false
+            }
+
+        })
+
 
         .otherwise({
             redirectTo: '/'
@@ -121,7 +131,6 @@ var app = angular.module('multinivel', [
              if(nextRoute.$$route.access.requiredLogin && !AuthenticationService.isLogged) {
                  $location.path('/sign_in');
              }
-
              // Verificamos que este en el perfil adecuado para entrar
              //if(nextRoute.access.userShouldBeAdmin && !Autenticacion.isAdmin) {
              //    $location.path('/');

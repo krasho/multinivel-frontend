@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   angular.module('multinivel.UserSessionsController', [])
-    .controller('UserSessionsController',['$scope', '$auth', '$location','userSessionService', function ($scope, $auth, $location, userSessionService) {
+    .controller('UserSessionsController',['$rootScope','$scope', '$auth', '$location','userSessionService', function ($rootScope, $scope, $auth, $location, userSessionService) {
 
       $scope.handleRegBtnClick = function(authInfo) {
 
@@ -11,11 +11,12 @@
                   password: authInfo.password
                }
            })
-           .then(function() {
-              console.log("loggeado");
+           .then(function(response) {
                // Si se ha registrado correctamente,
                // Podemos redirigirle a otra parte
-               //$location.path("/private");
+               $rootScope.user = response.data.token;
+               $location.path("/private");
+
            })
            .catch(function(response) {  // Si ha habido errores, llegaremos a esta función
                $scope.error = response.data.errors;
