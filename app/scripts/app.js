@@ -3,6 +3,7 @@
 var app = angular.module('multinivel', [
    'ngRoute',
    'satellizer',
+   'LocalStorageModule',
    'multinivel.MainController',
    'multinivel.BankController',
    'multinivel.BankService',
@@ -83,6 +84,11 @@ var app = angular.module('multinivel', [
 
 
         .otherwise({
+            access:{
+              requiredLogin: false,
+              userShouldBeAdmin: false
+            },
+
             redirectTo: '/'
         });
 
@@ -94,7 +100,7 @@ var app = angular.module('multinivel', [
         $authProvider.loginUrl = "http://api.multinivel.dev/sessions";
         $authProvider.signupUrl = "http://api.multinivel.dev/signup";
         $authProvider.tokenRoot = false; // set the token parent element if the token is not the JSON root
-        $authProvider.tokenName = "token";
+        $authProvider.tokenName = "auth_token";
         $authProvider.tokenPrefix = "multinivel";
   });
 
@@ -127,6 +133,8 @@ var app = angular.module('multinivel', [
 
          // Verificamos si puede acceder a la siguiente ruta
          $rootScope.$on("$routeChangeStart", function(event, nextRoute, currentRoute) {
+             //console.log(nextRoute);
+
              // Verificamos que este loggeado, si no, lo mandamos a loggearse
              if(nextRoute.$$route.access.requiredLogin && !AuthenticationService.isLogged) {
                  $location.path('/sign_in');

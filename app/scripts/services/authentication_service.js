@@ -11,7 +11,7 @@
                  if($auth && $auth.getToken()){
                      this.isLogged = true;
                      var auth = $auth.getPayload();
-                     //console.log($auth.getPayload());
+                     console.log($auth.getPayload());
                      //this.isAdmin = auth.user.isAdmin == 1 ? true : false
                  } else {
                      this.isLogged = false;
