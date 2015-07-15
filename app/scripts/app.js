@@ -125,6 +125,14 @@ var app = angular.module('multinivel', [
       }]);
   }]);
 
+  app.config(function (localStorageServiceProvider) {
+     localStorageServiceProvider
+       .setPrefix('multinivel')
+       .setStorageType('localStorage')
+       .setNotify(true, true)
+   });
+
+
    app.run(
       // Funnción para mandar a la página de loggeo si no hay sessión
      function($rootScope, $location, AuthenticationService){
