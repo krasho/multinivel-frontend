@@ -1,7 +1,7 @@
 (function(){
    'use strict';
    angular.module('multinivel.AuthenticationService',[])
-      .factory('AuthenticationService',['$auth','localStorageService', function($auth, localStorageService){
+      .factory('AuthenticationService',['$auth', '$rootScope','localStorageService', function($auth, $rootScope, localStorageService){
 
 
       var auth = {
@@ -10,14 +10,15 @@
              check: function() {
                  if($auth && $auth.getToken()){
                      this.isLogged = true;
+
+
+                   //Llenado de las variables de $rootScope del usuario loggeado
+                   $rootScope.email = localStorageService.get("email");
+                   $rootScope.id    = localStorageService.get("id");
+
                      //var auth = $auth.getPayload();
                      //console.log($auth.getPayload());
                      //this.isAdmin = auth.user.isAdmin == 1 ? true : false
-
-                     if(localStorageService.isSupported) {
-                         console.log("Entre al local");
-                     }
-
                  } else {
                      this.isLogged = false;
                      this.isAdmin = false;

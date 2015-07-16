@@ -135,7 +135,7 @@ var app = angular.module('multinivel', [
 
    app.run(
       // Funnción para mandar a la página de loggeo si no hay sessión
-     function($rootScope, $location, AuthenticationService){
+     function($rootScope, $location, $auth, localStorageService, AuthenticationService){
          // Si se refresca la página, se checa la autenticación
          AuthenticationService.check();
 
@@ -147,6 +147,7 @@ var app = angular.module('multinivel', [
              if(nextRoute.$$route.access.requiredLogin && !AuthenticationService.isLogged) {
                  $location.path('/sign_in');
              }
+
              // Verificamos que este en el perfil adecuado para entrar
              //if(nextRoute.access.userShouldBeAdmin && !Autenticacion.isAdmin) {
              //    $location.path('/');

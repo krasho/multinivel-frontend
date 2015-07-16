@@ -41,12 +41,13 @@
 
             <ul class="nav navbar-nav">
              <li><a href="#/">Home</a></li>
-              <li ng-show="!user"><a ng-href="#/sign_in">Login</a></li>
-              <li ng-show="user">
+              <li ng-show="!email"><a ng-href="#/sign_in">Login</a></li>
+              <li ng-show="email">
                  <a ng-click='signOut()'>Salir</a>
               </li>
             </ul>
           </div>
+          <div ng-show="email">{{email}}</di>
         </div>
       </div>
     </header>
