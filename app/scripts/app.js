@@ -99,7 +99,7 @@ var app = angular.module('multinivel', [
         // Parametros de configuración
         $authProvider.loginUrl = "http://api.multinivel.dev/sessions";
         $authProvider.signupUrl = "http://api.multinivel.dev/signup";
-        $authProvider.tokenRoot = false; // set the token parent element if the token is not the JSON root
+        $authProvider.tokenRoot = "user"; // set the token parent element if the token is not the JSON root
         $authProvider.tokenName = "auth_token";
         $authProvider.tokenPrefix = "multinivel";
   });

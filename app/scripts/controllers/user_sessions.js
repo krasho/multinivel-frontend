@@ -18,8 +18,9 @@
 
                if(localStorageService.isSupported) {
                   //Guardado de las variables
-                  localStorageService.set("email", response.data.email);
-                  localStorageService.set("id", response.data.id);
+                  console.log(response.data);
+                  localStorageService.set("email", response.data.user.email);
+                  localStorageService.set("id", response.data.user.id);
                }
 
 
